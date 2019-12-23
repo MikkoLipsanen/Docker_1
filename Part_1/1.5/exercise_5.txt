@@ -1,0 +1,7 @@
+$ docker run -d -it --name test ubuntu sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'
+
+$ docker exec test apt-get update
+
+$ docker exec test apt-get install -y curl wget
+
+$ curl helsinki.fi
