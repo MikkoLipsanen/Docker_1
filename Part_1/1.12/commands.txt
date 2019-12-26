@@ -1,0 +1,15 @@
+Build & run commands:
+
+Frontend:
+docker build -t front .
+docker run -p 5000:5000 front
+
+-Dockerfile addition: 
+ENV API_URL=http://localhost:8000
+
+Backend:
+docker build -t back .
+docker run -p 8000:8000 back
+
+-Dockerfile addition:
+ENV FRONT_URL=http://localhost:5000
