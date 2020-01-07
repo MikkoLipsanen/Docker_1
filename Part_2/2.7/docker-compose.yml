@@ -1,0 +1,31 @@
+version: '3.5'
+
+services:
+    frontend:
+      image: kurkkumopo-front
+      build:
+        context: /home/mclipsan/Documents/Yliopisto/TKT/Docker/Part_2/2.7/ml-kurkkumopo-frontend
+        dockerfile: Dockerfile
+      ports:
+        - 3000:3000
+    training:
+      image: kurkkumopo-training
+      build:
+        context: /home/mclipsan/Documents/Yliopisto/TKT/Docker/Part_2/2.7/ml-kurkkumopo-training
+        dockerfile: Dockerfile
+      volumes:
+      - model:/src/model
+      - images:/src/imgs
+    backend:
+      image: kurkkumopo-back
+      build:
+        context: /home/mclipsan/Documents/Yliopisto/TKT/Docker/Part_2/2.7/ml-kurkkumopo-backend
+        dockerfile: Dockerfile
+      ports:
+        - 5000:5000
+      volumes:
+        - model:/src/model
+volumes:
+    model:
+    images:
+
