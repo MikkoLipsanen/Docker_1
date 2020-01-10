@@ -1,0 +1,30 @@
+version: '3.5'
+
+services:
+    frontend:
+      image: front
+      ports:
+        - 5000:5000
+    backend:
+      image: back
+      container_name: backend_container
+      ports:
+        - 8000:8000
+      environment:
+        - REDIS=redis_container
+        - DB_HOST=db
+        - DB_PASSWORD=secret
+        - DB_USERNAME=user
+        - DB_NAME=db
+    redis:
+      image: redis
+      container_name: redis_container
+    db:
+      image: postgres
+      restart: unless-stopped
+      environment:
+        - POSTGRES_PASSWORD=secret
+        - POSTGRES_USER=user
+        - POSTGRES_DB=db
+      volumes: 
+        - ./db_data:/var/lib/postgresql/data
