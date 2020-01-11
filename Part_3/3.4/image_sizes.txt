@@ -1,0 +1,7 @@
+Backend:
+- image size before (FROM ubuntu:16.04): 332 MB
+- image size after (FROM node:10-alpine): 139 MB
+
+Frontend:
+- image size before (FROM ubuntu:16.04): 429 MB
+- image size after (FROM node:10-alpine): 236 MB
