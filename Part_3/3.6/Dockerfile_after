@@ -1,0 +1,16 @@
+FROM maven:3.5-jdk-8 as build-stage
+
+COPY ./pom.xml ./pom.xml
+RUN mvn dependency:go-offline -B
+COPY ./src ./src
+RUN mvn package
+
+FROM openjdk:8u171-jre-alpine
+
+WORKDIR /docker-example
+COPY --from=build-stage ./target ./target
+RUN adduser -D user && \
+    chown -R user /docker-example/
+USER user
+EXPOSE 8080
+CMD ["java", "-jar", "./target/docker-example-1.1.3.jar"]
